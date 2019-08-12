@@ -205,3 +205,4 @@ nb-configuration.xml
 
 ## benchmark specific
 *.json
+*.csv

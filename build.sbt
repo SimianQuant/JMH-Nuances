@@ -28,7 +28,8 @@ lazy val jmhnuances = project
     fork := true,
     libraryDependencies ++= Seq(
       "org.apache.commons" % "commons-math3" % Settings.versions.commonsMath,
-      "org.typelevel" %% "spire" % Settings.versions.spire
+      "org.typelevel" %% "spire" % Settings.versions.spire,
+      "com.typesafe.play" %% "play-json" % Settings.versions.play
     )
   )
   .enablePlugins(JmhPlugin)
