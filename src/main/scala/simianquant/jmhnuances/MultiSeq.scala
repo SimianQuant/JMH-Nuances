@@ -26,9 +26,6 @@ object MultiSeq {
   @State(Scope.Thread)
   class AbscissaeJet18 extends Data.BaseAbscissaeJet(18)
 
-  @State(Scope.Thread)
-  class AbscissaeJet20 extends Data.BaseAbscissaeJet(20)
-
 }
 @BenchmarkMode(Array(Mode.SampleTime))
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
@@ -37,11 +34,30 @@ class MultiSeq {
   import MultiSeq._
 
   @Benchmark
+  def baseline10(data: AbscissaeJet10, bh: Blackhole): Unit = {
+    var ctr = 0
+    while (ctr < data.xs.length) {
+      val x = data.xs(ctr)
+      bh.consume(x)
+      ctr += 1
+    }
+  }
+  @Benchmark
   def jet10(interpolator: InterpolatorInstance, data: AbscissaeJet10, bh: Blackhole): Unit = {
     var ctr = 0
     while (ctr < data.xs.length) {
       val x = data.xs(ctr)
       bh.consume(interpolator.instance(x))
+      ctr += 1
+    }
+  }
+
+  @Benchmark
+  def baseline12(data: AbscissaeJet12, bh: Blackhole): Unit = {
+    var ctr = 0
+    while (ctr < data.xs.length) {
+      val x = data.xs(ctr)
+      bh.consume(x)
       ctr += 1
     }
   }
@@ -57,11 +73,31 @@ class MultiSeq {
   }
 
   @Benchmark
+  def baseline14(data: AbscissaeJet14, bh: Blackhole): Unit = {
+    var ctr = 0
+    while (ctr < data.xs.length) {
+      val x = data.xs(ctr)
+      bh.consume(x)
+      ctr += 1
+    }
+  }
+
+  @Benchmark
   def jet14(interpolator: InterpolatorInstance, data: AbscissaeJet14, bh: Blackhole): Unit = {
     var ctr = 0
     while (ctr < data.xs.length) {
       val x = data.xs(ctr)
       bh.consume(interpolator.instance(x))
+      ctr += 1
+    }
+  }
+
+  @Benchmark
+  def baseline16(data: AbscissaeJet16, bh: Blackhole): Unit = {
+    var ctr = 0
+    while (ctr < data.xs.length) {
+      val x = data.xs(ctr)
+      bh.consume(x)
       ctr += 1
     }
   }
@@ -77,17 +113,17 @@ class MultiSeq {
   }
 
   @Benchmark
-  def jet18(interpolator: InterpolatorInstance, data: AbscissaeJet18, bh: Blackhole): Unit = {
+  def baseline18(data: AbscissaeJet18, bh: Blackhole): Unit = {
     var ctr = 0
     while (ctr < data.xs.length) {
       val x = data.xs(ctr)
-      bh.consume(interpolator.instance(x))
+      bh.consume(x)
       ctr += 1
     }
   }
 
   @Benchmark
-  def jet20(interpolator: InterpolatorInstance, data: AbscissaeJet20, bh: Blackhole): Unit = {
+  def jet18(interpolator: InterpolatorInstance, data: AbscissaeJet18, bh: Blackhole): Unit = {
     var ctr = 0
     while (ctr < data.xs.length) {
       val x = data.xs(ctr)

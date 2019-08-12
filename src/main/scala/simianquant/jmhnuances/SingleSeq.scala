@@ -16,7 +16,7 @@ object SingleSeq {
 
   @State(Scope.Thread)
   class SingleAbscissaValue {
-    val x = math.Pi
+    val x = math.Pi / 4
   }
 
 }
@@ -28,11 +28,21 @@ class SingleSeq {
   import SingleSeq._
 
   @Benchmark
-  def baseline(interpolator: InterpolatorInstance, data: SingleAbscissaValue): Double = data.x
+  def baselineSingle(interpolator: InterpolatorInstance, data: SingleAbscissaValue): Double = data.x
 
   @Benchmark
   def singleValue(interpolator: InterpolatorInstance, data: SingleAbscissaValue): Double =
     interpolator.instance.value(data.x)
+
+  @Benchmark
+  def baselineSequential(data: AbscissaeValue14, bh: Blackhole): Unit = {
+    var ctr = 0
+    while (ctr < data.xs.length) {
+      val x = data.xs(ctr)
+      bh.consume(x)
+      ctr += 1
+    }
+  }
 
   @Benchmark
   def sequenceValue(interpolator: InterpolatorInstance, data: AbscissaeValue14, bh: Blackhole): Unit = {

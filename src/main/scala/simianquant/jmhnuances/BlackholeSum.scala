@@ -23,6 +23,16 @@ class BlackholeSum {
   import BlackholeSum._
 
   @Benchmark
+  def baseline(data: AbscissaeValue14, bh: Blackhole): Unit = {
+    var ctr = 0
+    while (ctr < data.xs.length) {
+      val x = data.xs(ctr)
+      bh.consume(x)
+      ctr += 1
+    }
+  }
+
+  @Benchmark
   def noBlackhole(interpolator: InterpolatorInstance, data: AbscissaeValue14): Unit = {
     var ctr = 0
     while (ctr < data.xs.length) {
