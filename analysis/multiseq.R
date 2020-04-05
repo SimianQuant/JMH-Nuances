@@ -95,9 +95,9 @@ sampled.jet.medians <- data.frame(
 
 #plots
 
-plotBaseline <- ggplot(sampled.baseline.df, aes(x=benchmark, y=value, colour=benchmark)) + 
+plotBaseline <- ggplot(sampled.baseline.df, aes(x=benchmark, y=value)) + 
   geom_boxplot() +
-  geom_text(data = sampled.baseline.medians, aes(label = round(value, 2)), nudge_x = 0.5) +
+  geom_label(data = sampled.baseline.medians, aes(label = round(value, 2)), nudge_x = 0.5) +
   ggtitle("Multi Baseline") +
   ylab("Normalized Runtime (ns)") +
   xlab("Variant") +
@@ -105,13 +105,12 @@ plotBaseline <- ggplot(sampled.baseline.df, aes(x=benchmark, y=value, colour=ben
   theme(
     axis.text = element_text(size = 12), 
     axis.title = element_text(size = 14),
-    plot.title = element_text(size = 18, hjust = 0.5),
-    legend.position = "none"
+    plot.title = element_text(size = 18, hjust = 0.5)
   ) 
 
-plotJet <- ggplot(sampled.jet.df, aes(x=benchmark, y=value, colour=benchmark)) + 
+plotJet <- ggplot(sampled.jet.df, aes(x=benchmark, y=value)) + 
   geom_boxplot() +
-  geom_text(data = sampled.jet.medians, aes(label = round(value, 2)), nudge_x = 0.5) +
+  geom_label(data = sampled.jet.medians, aes(label = round(value, 2)), nudge_x = 0.5) +
   ggtitle("Multi Value") +
   ylab("Normalized Runtime (ns)") +
   xlab("Variant") +
@@ -119,6 +118,5 @@ plotJet <- ggplot(sampled.jet.df, aes(x=benchmark, y=value, colour=benchmark)) +
   theme(
     axis.text = element_text(size = 12), 
     axis.title = element_text(size = 14),
-    plot.title = element_text(size = 18, hjust = 0.5),
-    legend.position = "none"
+    plot.title = element_text(size = 18, hjust = 0.5)
   ) 

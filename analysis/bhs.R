@@ -48,9 +48,9 @@ sampled.medians <- data.frame(
 
 # Plots
 
-plotBox <- ggplot(sampled.df, aes(x=benchmark, y=value, colour = benchmark)) + 
+plotBox <- ggplot(sampled.df, aes(x=benchmark, y=value)) + 
   geom_boxplot() +
-  geom_text(data = sampled.medians, aes(label = round(value, 2)), nudge_y = 1) +
+  geom_label(data = sampled.medians, aes(label = round(value, 2)), nudge_x = 0.5) +
   ggtitle("Blackhole Sum") +
   ylab("Normalized Runtime (ns)") +
   xlab("Variant") +
@@ -58,13 +58,12 @@ plotBox <- ggplot(sampled.df, aes(x=benchmark, y=value, colour = benchmark)) +
   theme(
     axis.text = element_text(size = 12), 
     axis.title = element_text(size = 14),
-    plot.title = element_text(size = 18, hjust = 0.5),
-    legend.position = "none"
+    plot.title = element_text(size = 18, hjust = 0.5)
   )
 
-plotBar <- ggplot(sampled.medians, aes(x=benchmark, y=value, fill = benchmark)) + 
+plotBar <- ggplot(sampled.medians, aes(x=benchmark, y=value)) + 
   geom_bar(stat = "identity", position = "dodge") +
-  geom_text(aes(label = round(value, 2)), nudge_y = 0.9) +
+  geom_label(aes(label = round(value, 2)), nudge_x = 0.9) +
   ggtitle("Blackhole Sum") +
   ylab("Normalized Runtime (ns)") +
   xlab("Variant") +

@@ -69,9 +69,9 @@ delta.medians <- data.frame(
 
 # Plots
 
-plotRaw <- ggplot(sampled.df, aes(x=benchmark, y=value, colour=benchmark)) + 
+plotRaw <- ggplot(sampled.df, aes(x=benchmark, y=value)) + 
   geom_boxplot() +
-  geom_text(data = sampled.medians, aes(label = round(value, 2)), nudge_x = 0.47) +
+  geom_label(data = sampled.medians, aes(label = round(value, 2)), nudge_x = 0.47) +
   ggtitle("Single Evaluation vs Sequential Evaluation") +
   ylab("Normalized Runtime (ns)") +
   xlab("Variant") +
@@ -79,13 +79,12 @@ plotRaw <- ggplot(sampled.df, aes(x=benchmark, y=value, colour=benchmark)) +
   theme(
     axis.text = element_text(size = 12), 
     axis.title = element_text(size = 14),
-    plot.title = element_text(size = 18, hjust = 0.5),
-    legend.position = "none"
-  ) 
+    plot.title = element_text(size = 18, hjust = 0.5)
+  )
 
-plotDelta <- ggplot(delta.df, aes(x=benchmark, y=value, colour=benchmark)) + 
+plotDelta <- ggplot(delta.df, aes(x=benchmark, y=value)) + 
   geom_boxplot() +
-  geom_text(data = delta.medians, aes(label = round(value, 2)), nudge_x = 0.47) +
+  geom_label(data = delta.medians, aes(label = round(value, 2)), nudge_x = 0.47) +
   ggtitle("Differential Evaluation Time") +
   ylab("Normalized Runtime (ns)") +
   xlab("Variant") +
@@ -94,7 +93,6 @@ plotDelta <- ggplot(delta.df, aes(x=benchmark, y=value, colour=benchmark)) +
   theme(
     axis.text = element_text(size = 12), 
     axis.title = element_text(size = 14),
-    plot.title = element_text(size = 18, hjust = 0.5),
-    legend.position = "none"
+    plot.title = element_text(size = 18, hjust = 0.5)
   ) 
 
